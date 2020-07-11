@@ -1,21 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import { Text } from 'react-native'
+import { RecoilRoot } from 'recoil'
+
+import Home from './src/pages/Home'
+
+console.disableYellowBox = true
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <RecoilRoot>
+      <React.Suspense fallback={<Text>Loading...</Text>}>
+        <Home />
+      </React.Suspense>
+    </RecoilRoot>
+  )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

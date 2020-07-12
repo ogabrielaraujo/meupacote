@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { StyleSheet, Text, ScrollView, SafeAreaView } from 'react-native'
+import { StyleSheet, Text, ScrollView } from 'react-native'
 import * as SQLite from 'expo-sqlite'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import SvgUri from 'expo-svg-uri'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 import List from 'components/List'
-import Info from 'components/Info'
 import Add from 'components/Add'
 
 import { packageState } from 'atoms/packages'
@@ -34,7 +34,7 @@ export default function Home() {
   }, [])
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['right', 'top', 'left']}>
       <SvgUri
         width="100"
         height="100"
@@ -51,8 +51,6 @@ export default function Home() {
           <List list={status} setCurrent={setCurrent} reference={refList} />
         </ScrollView>
       )}
-
-      {current && <Info reference={refList} content={current} />}
     </SafeAreaView>
   )
 }

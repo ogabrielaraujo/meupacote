@@ -8,29 +8,18 @@ import {
 } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 import { useRecoilState, useRecoilValue } from 'recoil'
+import { useNavigation } from '@react-navigation/native'
 
 import { packageState } from 'atoms/packages'
 import { statusPackageState } from 'atoms/packages/selectors/statusPackageState'
+import ucFirst from 'functions/ucFirst'
+import findPackageNameByCode from 'functions/findPackageNameByCode'
+import statusIcon from 'functions/statusIcon'
 
 const List = ({ list, setCurrent, reference }) => {
   const [packages, setPackages] = useRecoilState(packageState)
   const status = useRecoilValue(statusPackageState)
-
-  function ucFirst(string) {
-    if (typeof stripe === 'undefined') return string
-
-    return string.charAt(0).toUpperCase() + string.slice(1)
-  }
-
-  function findNameByCode(code) {
-    const find = packages.find((el) => el.code === code)
-
-    if (!find.name) {
-      return ''
-    }
-
-    return find.name
-  }
+  const navigation = useNavigation()
 
   function ListItem({ data }) {
     const lastTrack =
@@ -40,14 +29,14 @@ const List = ({ list, setCurrent, reference }) => {
 
     function open() {
       setCurrent(data)
-      reference.current.open()
+      navigation.navigate('Info', { data })
     }
 
     return (
       <TouchableOpacity onPress={open} style={styles.listItem}>
-        <Feather name="map-pin" size={24} color="#333" />
+        <Feather name={statusIcon(lastTrack.status)} size={32} color="#333" />
         <View style={styles.content}>
-          <Text style={styles.code}>{findNameByCode(data.code)}</Text>
+          <Text style={styles.code}>{findPackageNameByCode(data.code)}</Text>
           <Text style={styles.status}>{ucFirst(lastTrack.status)}</Text>
           <Text style={styles.locale}>{ucFirst(lastTrack.locale)}</Text>
         </View>
@@ -77,7 +66,7 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    marginLeft: 15,
+    marginLeft: 20,
   },
   code: {
     fontSize: 18,

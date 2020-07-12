@@ -1,16 +1,27 @@
 import React from 'react'
-import { Text } from 'react-native'
+import { StatusBar } from 'react-native'
 import { RecoilRoot } from 'recoil'
 
-import Home from './src/pages/Home'
+import Routes from './src/routes'
+import Loading from 'components/Loading'
+import Network from 'components/Network'
 
 console.disableYellowBox = true
 
 export default function App() {
   return (
     <RecoilRoot>
-      <React.Suspense fallback={<Text>Loading...</Text>}>
-        <Home />
+      <React.Suspense fallback={<Loading />}>
+        <Network>
+          <Routes />
+        </Network>
+
+        <StatusBar
+          barStyle="dark-content"
+          backgroundColor="#fff"
+          networkActivityIndicatorVisible={true}
+          translucent={true}
+        />
       </React.Suspense>
     </RecoilRoot>
   )

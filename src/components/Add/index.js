@@ -21,11 +21,7 @@ const Add = () => {
   const [packages, setPackages] = useRecoilState(packageState)
 
   useEffect(() => {
-    if (code.length >= 1) {
-      setEnabled(true)
-    } else {
-      setEnabled(false)
-    }
+    setEnabled(code.length >= 1 ? true : false)
   }, [code])
 
   async function handleSend() {
@@ -114,9 +110,6 @@ const styles = StyleSheet.create({
   button: {
     width: 50,
     padding: 12,
-  },
-  icon: {
-    color: 'red',
   },
 })
 

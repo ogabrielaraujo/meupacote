@@ -3,7 +3,7 @@ import {
   StyleSheet,
   View,
   Text,
-  ScrollView,
+  FlatList,
   Alert,
   ActionSheetIOS,
 } from 'react-native'
@@ -14,9 +14,8 @@ import moment from 'moment'
 import { useImmer } from 'use-immer'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import * as SQLite from 'expo-sqlite'
-import { useRecoilState } from 'recoil'
 
-import { packageState } from 'atoms/packages'
+import useData from 'hooks/useData'
 import ucFirst from 'functions/ucFirst'
 import statusIcon from 'functions/statusIcon'
 import findPackageNameByCode from 'functions/findPackageNameByCode'
@@ -26,15 +25,15 @@ const db = SQLite.openDatabase('db55252.db')
 const Info = () => {
   const route = useRoute()
   const navigation = useNavigation()
-  const [packages, setPackages] = useRecoilState(packageState)
+  const routeParams = route.params
+
+  const { setPackages } = useData()
 
   const [current, setCurrent] = useImmer({
     status: '',
     code: '',
     tracks: [],
   })
-
-  const routeParams = route.params
 
   useEffect(() => {
     setCurrent((draft) => {
@@ -170,12 +169,16 @@ const Info = () => {
         <Text style={styles.code}>{current.code}</Text>
       </View>
 
-      <ScrollView style={styles.tracks}>
-        {current &&
-          current.tracks.map((track, index) => {
-            return <Item key={index} track={track} />
-          })}
-      </ScrollView>
+      {current && (
+        <FlatList
+          style={styles.tracks}
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
+          data={current.tracks}
+          renderItem={({ item }) => <Item track={item} />}
+          keyExtractor={(item) => item.code}
+        />
+      )}
     </SafeAreaView>
   )
 }

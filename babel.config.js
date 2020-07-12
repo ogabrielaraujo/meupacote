@@ -12,6 +12,7 @@ module.exports = function (api) {
             pages: './src/pages',
             services: './src/services',
             functions: './src/functions',
+            hooks: './src/hooks',
             atoms: './src/atoms',
           },
         },

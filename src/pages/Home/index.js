@@ -1,25 +1,17 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { StyleSheet, Text, ScrollView } from 'react-native'
+import React, { useEffect } from 'react'
+import { StyleSheet, Text, View } from 'react-native'
 import * as SQLite from 'expo-sqlite'
-import { useRecoilState, useRecoilValue } from 'recoil'
 import SvgUri from 'expo-svg-uri'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
+import useData from 'hooks/useData'
 import List from 'components/List'
 import Add from 'components/Add'
-
-import { packageState } from 'atoms/packages'
-import { statusPackageState } from 'atoms/packages/selectors/statusPackageState'
 
 const db = SQLite.openDatabase('db55252.db')
 
 export default function Home() {
-  const refList = useRef()
-
-  const [packages, setPackages] = useRecoilState(packageState)
-  const status = useRecoilValue(statusPackageState)
-
-  const [current, setCurrent] = useState({})
+  const { status, packages, setPackages } = useData()
 
   useEffect(() => {
     // create table
@@ -46,10 +38,10 @@ export default function Home() {
 
       <Add />
 
-      {packages && (
-        <ScrollView style={styles.list}>
-          <List list={status} setCurrent={setCurrent} reference={refList} />
-        </ScrollView>
+      {packages && status && (
+        <View style={styles.list}>
+          <List list={status} />
+        </View>
       )}
     </SafeAreaView>
   )

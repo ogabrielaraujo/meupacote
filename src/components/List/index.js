@@ -16,7 +16,7 @@ import ucFirst from 'functions/ucFirst'
 import findPackageNameByCode from 'functions/findPackageNameByCode'
 import statusIcon from 'functions/statusIcon'
 
-const List = ({ list, setCurrent, reference }) => {
+const List = ({ list }) => {
   const [packages, setPackages] = useRecoilState(packageState)
   const status = useRecoilValue(statusPackageState)
   const navigation = useNavigation()
@@ -28,7 +28,6 @@ const List = ({ list, setCurrent, reference }) => {
         : ''
 
     function open() {
-      setCurrent(data)
       navigation.navigate('Info', { data })
     }
 

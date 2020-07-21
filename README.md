@@ -33,13 +33,13 @@
 ## :computer: Prints
 
 <p align="center">
-<img src="https://i.imgur.com/3MLmLy7.png" alt="Print 1" width="240" />
+<img src="https://i.imgur.com/3MLmLy7.png" alt="Print 1" width="220" />
 
-<img src="https://i.imgur.com/lgSKetx.png" alt="Print 2" width="240" />
+<img src="https://i.imgur.com/lgSKetx.png" alt="Print 2" width="220" />
 
-<img src="https://i.imgur.com/tOxQp1L.png" alt="Print 3" width="240" />
+<img src="https://i.imgur.com/tOxQp1L.png" alt="Print 3" width="220" />
 
-<img src="https://i.imgur.com/NF4LDa2.png" alt="Print 4" width="240" />
+<img src="https://i.imgur.com/NF4LDa2.png" alt="Print 4" width="220" />
 </p>
 
 ## :link: Créditos

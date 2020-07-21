@@ -1,5 +1,6 @@
-node_modules/**/*
-.expo/*
+node_modules
+mobile/.expo
+mobile/.expo-shared
 npm-debug.*
 *.jks
 *.p8
@@ -8,6 +9,7 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+/api/.next
 
 # macOS
 .DS_Store

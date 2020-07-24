@@ -18,8 +18,9 @@
 ## :dart: Features
 
 - [x] Conexão com API dos Correios
-- [x] Listar pacotes/encomendas
-- [x] Adicionar pacotes/encomendas
+- [x] Listar encomendas
+- [x] Adicionar encomendas
+- [x] Acompanhar status de cada encomenda
 
 ## :white_check_mark: Tecnologias
 
